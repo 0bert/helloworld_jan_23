@@ -15,6 +15,12 @@ pipeline {
             steps {
                 echo 'Hello Deploy'
             }
+        }
+        stage('Docker') {
+            steps {
+                echo 'Image Step'
+            }
+            
     }
 }
 }
