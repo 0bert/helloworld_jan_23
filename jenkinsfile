@@ -1,26 +1,57 @@
+#pipeline {
+ #   agent any
+  #  stages {
+   #     stage('Build') {
+    #        steps {
+     #           echo 'Hello Build'
+      #      }
+       # }
+        #stage('Test') {
+         #   steps {
+          #      echo 'Hello Test'
+           # }
+        #}
+        #stage('Deploy') {
+         #   steps {
+          #      echo 'Hello Deploy'
+           # }
+        #}
+        #stage('Docker') {
+         #   steps {
+          #      echo 'Image Step'
+           # }
+            
+    #}
+#}
+#}
+
 pipeline {
     agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Hello Build'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Hello Test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Hello Deploy'
-            }
-        }
-        stage('Docker') {
-            steps {
-                echo 'Image Step'
-            }
-            
+    tools{
+        maven 'M2_HOME'
     }
-}
+    stages ('Build') {
+        steps {
+            sh 'mvn clean'
+            sh 'mvn install'
+            sh 'mvn packages'
+        }
+    }
+    stage ('Test') {
+        steps {
+            sh 'mvn tset'
+        }
+    }
+    stage ('Deploy') {
+        steps {
+            echo 'Deploy Step'
+            sleep 10
+        }
+    }
+    stage ('Docker') {
+        steps {
+            echo 'Image Steps'
+        }
+    }
+
 }
