@@ -18,13 +18,12 @@ pipeline {
     }
         stage ('Deploy') {
             steps {
-               echo 'Deploy Step'
-            
+               echo 'Deploy Step'  
         }
     }
         stage ('Docker') {
             steps {
-               echo 'Image Steps'
+               echo 'Image Step'
         }
     }
 
