@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools{
+    tools {
         maven 'M2_HOME'
     }
     stages ('Build') {
@@ -13,7 +13,6 @@ pipeline {
     stage ('Test') {
         steps {
             sh 'mvn tset'
-            sleep 3
         }
     }
     stage ('Deploy') {
