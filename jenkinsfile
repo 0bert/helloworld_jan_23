@@ -3,28 +3,30 @@ pipeline {
     tools {
         maven 'M2_HOME'
     }
-    stages ('Build') {
-        steps {
-            sh 'mvn clean'
-            sh 'mvn install'
-            sh 'mvn packages'
+    stages {
+        stage ('Build') {
+            steps {
+                sh 'mvn clean'
+                sh 'mvn install'
+                sh 'mvn packages'
         }
     }
-    stage ('Test') {
-        steps {
+        stage ('Test') {
+            steps {
             sh 'mvn tset'
         }
     }
-    stage ('Deploy') {
-        steps {
-            echo 'Deploy Step'
-            sleep 10
+        stage ('Deploy') {
+            steps {
+               echo 'Deploy Step'
+               sleep 10
         }
     }
-    stage ('Docker') {
-        steps {
-            echo 'Image Steps'
+        stage ('Docker') {
+            steps {
+               echo 'Image Steps'
         }
     }
 
+    }
 }
